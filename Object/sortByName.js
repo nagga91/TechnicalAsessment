@@ -10,5 +10,20 @@ var animals = [
  ];
 
 var sortedAnimals;
-
+function sortByName(animals){
+  var tab=[];
+  var result=[]
+      for (var i=0;i<animals.length;i++){
+          tab[i]=animals[i].name;
+      }
+      tab.sort();
+      for(var i=0;i<tab.length;i++){
+      for(var j=0;j<animals.length;j++){
+      if(animals[j].name===tab[i]){
+        result.push(animals[j])
+      }
+    }
+    }
+      return result
+  }
 

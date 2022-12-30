@@ -14,19 +14,21 @@
       return num * num;
    }
 
-   square(10) + 2;
-   square(100) + square(77);
-   square(8 / 2)
-   square(2 + 17);
-   square(square(15));
+   square(10) + 2; 102
+   square(100) + square(77); 15929
+   square(8 / 2); 16
+   square(2 + 17); 361
+   square(square(15)); 50625
    ```
 
 2. Write a sentence in plain English describing how `square(square(15))` is
    evaluated.
+   square(15)=15*15 and square(square(15))=15*15*15*15
 
 3. Rename `square`'s `num` parameter in your above code to `monkey`, and
    rename the uses of that parameter in the body to `monkey` as well. Will the
    function `square` still work? Why or why not?
+    \\the function still work if square(monkey) and not work if monkey's type is string
 
 4. What is wrong with the following definitions of `square`? Write a sentence or
    two describing the issue(s); then, try copying the erroneous examples into a
@@ -38,43 +40,47 @@
    function square(monkey) {
      return x * x;
    }
-
+    the error is x is not defined 
    function square(5) {
      return 5 * 5;
    }
-
+    the error is unexpected number 5 as parameter
    function square("x") {
      return "x" * "x";
    }
+   the error we cant multiply string
    ```
 
 5. Fix the invalid syntax in the following functions (you can copy and paste these
    invalid definitions into your console and then edit them there):
 
    ```js
-   func square1(x {
+   func square1(x) {
      return x * x;
    }
 
-   functionsquare2 x)
+   function square2 (x){
      return x * x;
    }
 
-   function (x) square3 {
+   function square3 (x) {
      return x * x;
+   }
    ```
 
 6. The following functions exhibit poor style -- fix these issues using the
    original version of `square` as a reference.
 
    ```js
-   function square(x){return x*x;}
+   function square(x) {
+    return x*x;
+    }
 
-   function square (x) { return x *x;
+   function square (x) { 
+    return x*x;
    }
 
-   function square(x)
-   {
+   function square(x){
    return x * x;
    }
    ```
@@ -84,6 +90,7 @@
   ```js
   function cube(x) {
     // your code here
+    return x*x*x;
   }
   ```
 
@@ -93,18 +100,28 @@
 
   ```js
   // don't forget the parameters!
-  function fullName() {
+  function fullName(firstName,lastName) {
     // your code here
+    return firstName+' '+lastName
   }
   fullName("John", "Doe") // => "John Doe"
   ```
 
 9. Write a function `average` that takes two numbers as input (parameters), and
    returns the average of those numbers.
+```js
+function average(x,y){
+  return (x+y)/2
+}
+```
 
 10. Write a function `greeter` that takes a name as an argument and *greets*
     that name by returning something along the lines of `"Hello, <name>!"`
-
+```js
+function greeter(name){
+return "Hello, "+name+"!"
+}
+```
 11. Using the document found at <a href="http://www.gbcnv.edu/documents/ASC/docs/00000005.pdf" target="_blank">this link</a>, translate the first page of geometric
     formulas into JavaScript functions.
 
@@ -160,13 +177,38 @@ Translate the rest of the geometric formulas found <a href="http://www.gbcnv.edu
   deposited in a bank that pays an annual interest rate of 4.7% (*i* = 0.047),
   compounded quarterly (*n* = 4) after 6 years (*t* = 6) (you can use `Math.pow`
   to do exponentiation).
+  ```js
+  function futurevalue (P,i,n,t){
+    var x=1+i/n;
+    return P* Math.pow(x,n*t)
+  }
+  ```
 
 2. Write a `power` function that accepts the parameters `base` and `exponent`
    and returns the result. Replace `square` and `cube` with the `power` function
    you just wrote. Do not use `Math.pow`.
+   ```js
+   function power(base,exponent){
+    var result=1
+    for(var i=0;i<exponent;i++){
+    result*=base
+   }
+   return result
+   }
 
 3. Write your own square-root function called `sqrt` that accepts a `number`
    parameter and returns an approximate square root. Square-root approximations
    make use of averages. Be sure to use the `average` function you previously
    wrote. The first version of your square root function should perform no more
    than 3 successive averages.
+   ```js
+   function sqrt (number){
+   let square=number/2
+   let temp=0
+   while(square!==temp){
+    temp=square
+    square=average(number/square,square)
+   }
+   return square
+   }
+   ```
